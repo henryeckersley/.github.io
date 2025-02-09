@@ -1,0 +1,20 @@
+/project-root
+  ├── index.html
+  ├── vision.html
+  ├── portfolio.html
+  ├── resume.html
+  ├── contact.html
+  ├── /assets
+  │     ├── /images
+  │     │     ├── profile.jpg
+  │     │     ├── project1.jpg
+  │     │     ├── project2.jpg
+  │     │     └── … 
+  │     └── /resumes
+  │           ├── general.pdf
+  │           ├── academic.pdf
+  │           └── athletic.pdf
+  ├── /css
+  │     └── styles.css
+  └── /js
+        └── main.js
