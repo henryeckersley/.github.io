@@ -25,9 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
       if (index < text.length) {
         typingText.textContent += text.charAt(index);
         index++;
-        setTimeout(typeEffect, 250); // Adjust typing speed
+        setTimeout(typeEffect, 150); // Adjust typing speed
       } else {
-        cursor.style.animation = "blink 0.7s infinite"; // Keep blinking cursor
+        cursor.style.animation = "blink 1s infinite"; // Keep blinking cursor
       }
     }
 
