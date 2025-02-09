@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vision | John Doe</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/gsap.min.js" defer></script>
+  <script src="https://unpkg.com/@barba/core" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <div id="barba-wrapper">
+    <div class="barba-container">
+      <!-- Navigation -->
+      <nav class="navbar">
+        <div class="container">
+          <a href="index.html" class="logo">John Doe</a>
+          <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="vision.html" class="active">Vision</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Vision Section -->
+      <section id="vision">
+        <div class="container">
+          <h2>My Vision Board</h2>
+          <p>
+            Visualize the future I am building. Explore my goals, inspirations, and achievements through an interactive, animated experience.
+          </p>
+          <!-- Vision board canvas animated with Three.js -->
+          <div id="vision-canvas-container">
+            <canvas id="vision-canvas"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <div class="container">
+          <p>&copy; 2025 John Doe. All rights reserved.</p>
+          <div class="social-links">
+            <a href="https://linkedin.com/in/johndoe" target="_blank">LinkedIn</a>
+            <a href="mailto:john@example.com">Email</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+</body>
+</html>
