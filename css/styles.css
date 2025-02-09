@@ -93,7 +93,7 @@ html, body {
 .typing-cursor {
   display: inline-block;
   font-weight: bold;
-  animation: blink 0.7s infinite;
+  animation: blink 1s infinite;
 }
 
 @keyframes blink {
