@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>John Doe | Personal Portfolio</title>
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" />
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/styles.css" />
+  <!-- GSAP for animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/gsap.min.js" defer></script>
+  <!-- Barba.js for page transitions -->
+  <script src="https://unpkg.com/@barba/core" defer></script>
+  <!-- Three.js for advanced canvas animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  <!-- Main JS -->
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <div id="barba-wrapper">
+    <div class="barba-container">
+      <!-- Navigation -->
+      <nav class="navbar">
+        <div class="container">
+          <a href="index.html" class="logo">John Doe</a>
+          <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="vision.html">Vision</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="resume.html">Resume</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Hero Section -->
+      <section id="hero">
+        <div class="hero-content">
+          <h1 class="hero-title">Welcome to My World</h1>
+          <p class="hero-subtitle">High School Student | Athlete | Visionary</p>
+          <a href="#about" class="btn btn-primary">Learn More</a>
+        </div>
+        <!-- Animated background using Three.js -->
+        <canvas id="hero-canvas"></canvas>
+      </section>
+
+      <!-- About Section -->
+      <section id="about">
+        <div class="container about-container">
+          <div class="about-image">
+            <img src="assets/images/profile.jpg" alt="Profile Picture" />
+          </div>
+          <div class="about-text">
+            <h2>About Me</h2>
+            <p>
+              Hello! I'm John Doe, a dedicated high school student and passionate athlete striving for excellence in academics and sports. I am committed to leadership, community service, and athletic achievement.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <div class="container">
+          <p>&copy; 2025 John Doe. All rights reserved.</p>
+          <div class="social-links">
+            <a href="https://linkedin.com/in/johndoe" target="_blank">LinkedIn</a>
+            <a href="mailto:john@example.com">Email</a>
+          </div>
+        </div>
+      </footer>
+    </div> <!-- End of Barba container -->
+  </div> <!-- End of Barba wrapper -->
+</body>
+</html>
