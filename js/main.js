@@ -14,10 +14,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // GSAP animations for the Hero Section
   if (document.querySelector('#hero')) {
-    gsap.to('.hero-title', { opacity: 1, y: -20, duration: 1, delay: 0.5 });
+    const heroTitle = document.querySelector('.hero-title');
+    const typingText = document.getElementById('typing-text');
+    const cursor = document.querySelector('.typing-cursor');
+
+    const text = "Hi, I'm Henry."; // Customize as needed
+    let index = 0;
+
+    function typeEffect() {
+      if (index < text.length) {
+        typingText.textContent += text.charAt(index);
+        index++;
+        setTimeout(typeEffect, 150); // Adjust typing speed
+      } else {
+        cursor.style.animation = "blink 0.7s infinite"; // Keep blinking cursor
+      }
+    }
+
+    // GSAP animations before typing effect starts
+    gsap.to(heroTitle, { opacity: 1, y: -20, duration: 1, delay: 0.5, onComplete: typeEffect });
     gsap.to('.hero-subtitle', { opacity: 1, y: -20, duration: 1, delay: 1 });
     gsap.from('.btn', { opacity: 0, scale: 0.8, duration: 1, delay: 1.5 });
   }
+
 
   // Tab functionality for Resume page
   const tabButtons = document.querySelectorAll('.tab-button');
