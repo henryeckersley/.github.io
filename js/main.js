@@ -18,16 +18,32 @@ document.addEventListener('DOMContentLoaded', function() {
     const typingText = document.getElementById('typing-text');
     const cursor = document.querySelector('.typing-cursor');
 
-    const text = "Hi, my name is Henry."; // Customize as needed
-    let index = 0;
+    const phrases = ["Student", "Athlete", "Coder", "Web Developer"];
+    let phraseIndex = 0;
+    let charIndex = 0;
 
     function typeEffect() {
-      if (index < text.length) {
-        typingText.textContent += text.charAt(index);
-        index++;
+      const currentPhrase = phrases[phraseIndex];
+      if (charIndex < currentPhrase.length) {
+        typingText.textContent += currentPhrase.charAt(charIndex);
+        charIndex++;
         setTimeout(typeEffect, 150); // Adjust typing speed
       } else {
-        cursor.style.animation = "blink 1s infinite"; // Keep blinking cursor
+        setTimeout(() => {
+          cursor.style.animation = "blink 1s infinite"; // Keep blinking cursor
+          setTimeout(backspaceEffect, 800); // Start backspace after typing
+        }, 1000);
+      }
+    }
+
+    function backspaceEffect() {
+      if (charIndex > 0) {
+        typingText.textContent = typingText.textContent.slice(0, -1);
+        charIndex--;
+        setTimeout(backspaceEffect, 100);
+      } else {
+        phraseIndex = (phraseIndex + 1) % phrases.length; // Cycle through phrases
+        typeEffect();
       }
     }
 
@@ -36,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
     gsap.to('.hero-subtitle', { opacity: 1, y: -20, duration: 1, delay: 1 });
     gsap.from('.btn', { opacity: 0, scale: 0.8, duration: 1, delay: 1.5 });
   }
-
 
   // Tab functionality for Resume page
   const tabButtons = document.querySelectorAll('.tab-button');
@@ -69,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
         alert('Your message has been sent!');
         gsap.to(contactForm, { opacity: 1, duration: 0.5, y: 0 });
         contactForm.reset();
+        gsap.to(contactForm, { opacity: 0.5, y: -10, duration: 0.5, delay: 0.3 }); // Reset form animation
       }, 1000);
     });
   }
@@ -105,13 +121,14 @@ function initHeroCanvas() {
 
   function animate() {
     requestAnimationFrame(animate);
-    // Slowly rotate the particle field
-    points.rotation.x += 0.0005;
-    points.rotation.y += 0.001;
+    points.rotation.x += 0.01;
+    points.rotation.y += 0.01;
     renderer.render(scene, camera);
   }
+
   animate();
 
+  // Resize handling
   window.addEventListener('resize', function() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     camera.aspect = window.innerWidth / window.innerHeight;
@@ -121,50 +138,40 @@ function initHeroCanvas() {
 
 // Function: Initialize vision canvas animation using Three.js
 function initVisionCanvas() {
-  const canvas = document.getElementById('vision-canvas');
-  const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
-  renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+  const container = document.getElementById('vision-canvas-container');
+  const canvas = document.createElement('canvas');
+  container.appendChild(canvas);
+
+  const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
-  camera.position.z = 10;
+  const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+  camera.position.z = 5;
 
-  // Create multiple rotating cubes (or vision elements)
-  const cubes = [];
-  const geometry = new THREE.BoxGeometry(1, 1, 1);
-  for (let i = 0; i < 10; i++) {
-    const material = new THREE.MeshStandardMaterial({ 
-      color: new THREE.Color(Math.random(), Math.random(), Math.random()), 
-      roughness: 0.5 
-    });
-    const cube = new THREE.Mesh(geometry, material);
-    cube.position.x = (Math.random() - 0.5) * 15;
-    cube.position.y = (Math.random() - 0.5) * 10;
-    cube.position.z = (Math.random() - 0.5) * 10;
-    scene.add(cube);
-    cubes.push(cube);
+  // Create particles
+  const particlesCount = 500;
+  const geometry = new THREE.BufferGeometry();
+  const positions = new Float32Array(particlesCount * 3);
+  for (let i = 0; i < particlesCount * 3; i++) {
+    positions[i] = (Math.random() - 0.5) * 10;
   }
-  // Lighting
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-  scene.add(ambientLight);
-  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-  directionalLight.position.set(5, 10, 7.5);
-  scene.add(directionalLight);
+  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+  const material = new THREE.PointsMaterial({ color: 0xff00ff, size: 0.05 });
+  const points = new THREE.Points(geometry, material);
+  scene.add(points);
 
-  function animateVision() {
-    requestAnimationFrame(animateVision);
-    cubes.forEach(cube => {
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
-    });
+  function animate() {
+    requestAnimationFrame(animate);
+    points.rotation.x += 0.01;
+    points.rotation.y += 0.01;
     renderer.render(scene, camera);
   }
-  animateVision();
 
+  animate();
+
+  // Resize handling
   window.addEventListener('resize', function() {
-    const container = document.getElementById('vision-canvas-container');
     renderer.setSize(container.clientWidth, container.clientHeight);
     camera.aspect = container.clientWidth / container.clientHeight;
     camera.updateProjectionMatrix();
   });
 }
-
