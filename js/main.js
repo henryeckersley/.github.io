@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const typingText = document.getElementById('typing-text');
     const cursor = document.querySelector('.typing-cursor');
 
-    const text = "Hi, I'm Henry."; // Customize as needed
+    const text = "Hi, my name is Henry."; // Customize as needed
     let index = 0;
 
     function typeEffect() {
